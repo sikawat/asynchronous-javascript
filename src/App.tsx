@@ -37,16 +37,47 @@ const App: React.FC = () => {
   }, []);
 
   if (loading) return <div className="text-center text-lg">Loading...</div>;
-  if (error) return <div className="text-center text-red-500">Error: {error}</div>;
+  if (error)
+    return (
+      <div className="text-center text-red-500">
+        <p>Error: {error}</p>
+        <button
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </button>
+      </div>
+    );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
+      {/* Navbar */}
+      <div className="bg-white shadow-md sticky top-0 z-50">
+        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-gray-800">Post Viewer</div>
+          <div className="flex gap-6">
+            <a href="#!" className="text-gray-600 hover:text-purple-700">Home</a>
+            <a href="#!" className="text-gray-600 hover:text-purple-700">About</a>
+            <a href="#!" className="text-gray-600 hover:text-purple-700">Contact</a>
+          </div>
+        </nav>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 py-16">
+        <h1 className="text-4xl font-extrabold text-center mb-10 text-gray-800 leading-tight">
           Posts
         </h1>
         <PostList posts={posts} />
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-6 mt-10">
+        <div className="container mx-auto text-center">
+          <p>&copy; 2024 Your Project Name. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
